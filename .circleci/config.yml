@@ -1,0 +1,42 @@
+version: 2.1
+orbs:
+  android: circleci/android@2.2.0
+  gradle: circleci/gradle@3.0.0
+
+
+
+jobs:
+  machine-build:
+    parameters:
+      resource-class:
+        type: string
+        default: "medium"
+    machine:
+      image: android:2023.09.1
+    resource_class: << parameters.resource-class >>
+    steps:
+      - checkout
+      - run: gradle build
+  docker-build:
+    parameters:
+      resource-class:
+        type: string
+        default: "medium"
+    docker:
+      - image: cimg/android:2023.09.1
+    resource_class: << parameters.resource-class >>
+    steps:
+      - checkout
+      - run: gradle build
+
+workflows:
+  docker-and-machine-build:
+    jobs:
+      - machine-build:
+          matrix:
+            parameters:
+              resource-class: ["medium", "large", "xlarge", "2xlarge", "2xlarge+"]
+      - docker-build:
+          matrix:
+            parameters:
+              resource-class: ["small", "medium", "medium+", "large", "xlarge", "2xlarge", "2xlarge+"]
