@@ -30,8 +30,8 @@ workflows:
       - machine-build:
           matrix:
             parameters:
-              resource-class: ["medium", "large", "xlarge", "2xlarge", "2xlarge+"]
+              resource-class: ["medium", "large", "xlarge", "2xlarge"]
       - docker-build:
           matrix:
             parameters:
-              resource-class: ["small", "medium", "medium+", "large", "xlarge", "2xlarge"]
+              resource-class: ["small", "medium", "medium+", "large", "xlarge", "2xlarge", "2xlarge+"]
