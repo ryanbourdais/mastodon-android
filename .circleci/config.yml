@@ -1,9 +1,4 @@
 version: 2.1
-orbs:
-  android: circleci/android@2.2.0
-  gradle: circleci/gradle@3.0.0
-
-
 
 jobs:
   machine-build:
@@ -16,7 +11,7 @@ jobs:
     resource_class: << parameters.resource-class >>
     steps:
       - checkout
-      - run: gradle build
+      - run: ./gradlew build
   docker-build:
     parameters:
       resource-class:
@@ -27,7 +22,7 @@ jobs:
     resource_class: << parameters.resource-class >>
     steps:
       - checkout
-      - run: gradle build
+      - run: ./gradlew build
 
 workflows:
   docker-and-machine-build:
