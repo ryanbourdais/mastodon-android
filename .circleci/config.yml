@@ -34,7 +34,7 @@ jobs:
           additional-avd-args: "-d pixel_3a -c 1G"
           additional-emulator-args: "-memory 4096 -cores 3 -writable-system"
           avd-name: 'testing'
-          system-image: system-images;android-34;google_apis_playstore;x86_64
+          system-image: system-images;android-29;default;x86
 
   docker-build:
     parameters:
@@ -64,7 +64,7 @@ jobs:
           additional-avd-args: "-d pixel_3a -c 1G"
           additional-emulator-args: "-memory 4096 -cores 3 -writable-system"
           avd-name: 'testing'
-          system-image: system-images;android-34;google_apis_playstore;x86_64
+          system-image: system-images;android-29;default;x86
 
 workflows:
   docker-and-machine-build:
