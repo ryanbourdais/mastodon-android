@@ -16,7 +16,7 @@ jobs:
     resource_class: << parameters.resource-class >>
     steps:
       - checkout
-      - run: ./gradlew build
+      # - run: ./gradlew build
       - run: gradle aDAT
       - android/start-emulator-and-run-tests:
           pre-run-tests-steps:
@@ -46,7 +46,7 @@ jobs:
     resource_class: << parameters.resource-class >>
     steps:
       - checkout
-      - run: ./gradlew build
+      # - run: ./gradlew build
       - run: gradle aDAT
       - android/start-emulator-and-run-tests:
           pre-run-tests-steps:
