@@ -1,4 +1,9 @@
 version: 2.1
+orbs:
+  android: circleci/android@2.2.0
+  gradle: circleci/gradle@3.0.0
+
+
 
 jobs:
   machine-build:
@@ -11,7 +16,26 @@ jobs:
     resource_class: << parameters.resource-class >>
     steps:
       - checkout
-      - run: ./gradlew assembleRelease
+      - run: ./gradlew build
+      - run: gradle aDAT
+      - android/start-emulator-and-run-tests:
+          pre-run-tests-steps:
+            - run: echo "beginning tests"
+          test-command: './gradlew aDAT'
+          pre-emulator-wait-steps:
+            - run: echo "waiting for emulator"
+          post-emulator-wait-steps:
+            - run: echo "emulator running"
+          post-emulator-launch-assemble-command: './gradlew aD'
+          post-run-tests-steps: 
+            - run: echo "run test done"
+            - run: mkdir testdata
+            - run: adb pull storage .
+          additional-avd-args: "-d pixel_3a -c 1G"
+          additional-emulator-args: "-memory 4096 -cores 3 -writable-system"
+          avd-name: 'testing'
+          system-image: system-images;android-34;google_apis_playstore;x86_64
+
   docker-build:
     parameters:
       resource-class:
@@ -22,7 +46,25 @@ jobs:
     resource_class: << parameters.resource-class >>
     steps:
       - checkout
-      - run: ./gradlew assembleRelease
+      - run: ./gradlew build
+      - run: gradle aDAT
+      - android/start-emulator-and-run-tests:
+          pre-run-tests-steps:
+            - run: echo "beginning tests"
+          test-command: './gradlew aDAT'
+          pre-emulator-wait-steps:
+            - run: echo "waiting for emulator"
+          post-emulator-wait-steps:
+            - run: echo "emulator running"
+          post-emulator-launch-assemble-command: './gradlew aD'
+          post-run-tests-steps: 
+            - run: echo "run test done"
+            - run: mkdir testdata
+            - run: adb pull storage .
+          additional-avd-args: "-d pixel_3a -c 1G"
+          additional-emulator-args: "-memory 4096 -cores 3 -writable-system"
+          avd-name: 'testing'
+          system-image: system-images;android-34;google_apis_playstore;x86_64
 
 workflows:
   docker-and-machine-build:
@@ -34,4 +76,4 @@ workflows:
       - docker-build:
           matrix:
             parameters:
-              resource-class: ["small", "medium", "medium+", "large", "xlarge", "2xlarge", "2xlarge+"]
+              resource-class: ["small", "medium", "medium+", "large", "xlarge", "2xlarge"]
