@@ -59,6 +59,7 @@ jobs:
       - run: rm -f -r mastodon/build
       - run: gradle clean
       - run: gradle aDAT
+      - run: rm -f -r mastodon/build
       - run: gradle clean
       - run: gradle aR
       - run: rm -f -r mastodon/build
