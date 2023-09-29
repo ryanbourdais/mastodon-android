@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   android: circleci/android@2.2.0
-  ./gradlew: circleci/./gradlew@3.0.0
+  ./gradlew: circleci/gradle@3.0.0
 
 
 
