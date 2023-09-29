@@ -60,7 +60,7 @@ jobs:
       - run: ./gradlew clean
       - run: ./gradlew aDAT
       - run: ./gradlew clean
-      - run: ./gradlew aR
+      - run: ./gradlew aR --info
       - run: rm -f -r mastodon/build
       - run: ./gradlew clean
       - run: ./gradlew aDAT
