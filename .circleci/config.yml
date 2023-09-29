@@ -18,10 +18,10 @@ jobs:
       - checkout
       # - run: ./gradlew build
       - run: gradle aDAT
-      - run: rm -f mastodon/build
+      - run: rm -f -r mastodon/build
       - run: gradle clean
       - run: gradle aDAT
-      - run: rm -f mastodon/build
+      - run: rm -f -r mastodon/build
       - run: gradle clean
       - run: gradle aDAT
       # - android/start-emulator-and-run-tests:
