@@ -16,7 +16,6 @@ jobs:
     resource_class: << parameters.resource-class >>
     steps:
       - checkout
-      # - run: ./gradlew build
       - run: gradle aDAT
       - run: gradle aR
       - run: rm -f -r mastodon/build
@@ -27,23 +26,22 @@ jobs:
       - run: gradle clean
       - run: gradle aDAT
       - run: gradle aR
-      # - android/start-emulator-and-run-tests:
-      #     pre-run-tests-steps:
-      #       - run: echo "beginning tests"
-      #     test-command: './gradlew aDAT'
-      #     pre-emulator-wait-steps:
-      #       - run: echo "waiting for emulator"
-      #     post-emulator-wait-steps:
-      #       - run: echo "emulator running"
-      #     post-emulator-launch-assemble-command: './gradlew aDAT'
-      #     post-run-tests-steps: 
-      #       - run: echo "run test done"
-      #       - run: mkdir testdata
-      #       - run: adb pull storage .
-      #     additional-avd-args: "-d pixel_3a -c 1G"
-      #     additional-emulator-args: "-memory 4096 -cores 3 -writable-system"
-      #     avd-name: 'testing'
-      #     system-image: system-images;android-29;default;x86
+      - run: rm -f -r mastodon/build
+      - run: gradle clean
+      - run: gradle aDAT
+      - run: gradle aR
+      - run: rm -f -r mastodon/build
+      - run: gradle clean
+      - run: gradle aDAT
+      - run: gradle aR
+      - run: rm -f -r mastodon/build
+      - run: gradle clean
+      - run: gradle aDAT
+      - run: gradle aR
+      - run: rm -f -r mastodon/build
+      - run: gradle clean
+      - run: gradle aDAT
+      - run: gradle aR
 
   docker-build:
     parameters:
@@ -55,27 +53,32 @@ jobs:
     resource_class: << parameters.resource-class >>
     steps:
       - checkout
-      # - run: ./gradlew build
       - run: gradle aDAT
+      - run: gradle aR
+      - run: rm -f -r mastodon/build
+      - run: gradle clean
       - run: gradle aDAT
+      - run: gradle aR
+      - run: rm -f -r mastodon/build
+      - run: gradle clean
       - run: gradle aDAT
-      # - android/start-emulator-and-run-tests:
-      #     pre-run-tests-steps:
-      #       - run: echo "beginning tests"
-      #     test-command: './gradlew aDAT'
-      #     pre-emulator-wait-steps:
-      #       - run: echo "waiting for emulator"
-      #     post-emulator-wait-steps:
-      #       - run: echo "emulator running"
-      #     post-emulator-launch-assemble-command: './gradlew aDAT'
-      #     post-run-tests-steps: 
-      #       - run: echo "run test done"
-      #       - run: mkdir testdata
-      #       - run: adb pull storage .
-      #     additional-avd-args: "-d pixel_3a -c 1G"
-      #     additional-emulator-args: "-memory 4096 -cores 3 -writable-system"
-      #     avd-name: 'testing'
-      #     system-image: system-images;android-29;default;x86
+      - run: gradle aR
+      - run: rm -f -r mastodon/build
+      - run: gradle clean
+      - run: gradle aDAT
+      - run: gradle aR
+      - run: rm -f -r mastodon/build
+      - run: gradle clean
+      - run: gradle aDAT
+      - run: gradle aR
+      - run: rm -f -r mastodon/build
+      - run: gradle clean
+      - run: gradle aDAT
+      - run: gradle aR
+      - run: rm -f -r mastodon/build
+      - run: gradle clean
+      - run: gradle aDAT
+      - run: gradle aR
 
 workflows:
   docker-and-machine-build:
