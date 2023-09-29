@@ -18,6 +18,8 @@ jobs:
       - checkout
       # - run: ./gradlew build
       - run: gradle aDAT
+      - run: gradle aDAT
+      - run: gradle aDAT
       - android/start-emulator-and-run-tests:
           pre-run-tests-steps:
             - run: echo "beginning tests"
